@@ -1,0 +1,187 @@
+""" Objetos de tipo Cliente """
+    type Cliente {
+        id: ID
+        nombre: String
+        apellidos: String
+        edad: Int
+        tipo: TipoCliente
+        telefono: String
+        movil: String
+        emails: [Email]
+        empresa: String
+        cif: String
+    }
+
+    """ Asignar la categoría del cliente """
+    enum TipoCliente {
+        BASICO
+        PREMIUM
+    }
+
+    """ Asignar el estado del pedido """
+    enum EstadoPedido {
+        PENDIENTE
+        COMPLETADO
+        CANCELADO
+    }
+
+    type Email {
+        email: String
+    }
+
+    type Producto {
+        id: ID
+        nombre: String!
+        precio: Float!
+        stock: Int!
+    }
+
+    type Pedido {
+        id: ID
+        pedido: [PedidoProducto]
+        total: Float
+        fecha: String
+        cliente: ID
+        estado: EstadoPedido
+    }
+
+    type PedidoProducto {
+        id: ID
+        cantidad: Int
+    }
+
+    """ Cliente y total de compras realizadas """
+    type ClienteTotal {
+        total: Float
+        cliente: [Cliente]
+    }
+
+""" Comercial y total de ventas realizadas """
+    type ComercialTotal {
+        total: Float
+        comercial: [Usuario]
+    }
+
+    """ Token de usuario """
+    type Token {
+        token: String!
+    }
+
+""" Objetos de tipo Usuario """
+    type Usuario {
+        id: ID
+        usuario: String!
+        nombre: String!
+        password: String!
+        repetirPassword: String!
+        email: String!
+        rol: String!
+    }
+
+    """ Propiedades para los objetos de tipo Cliente """
+    input ClienteInput {
+        id: ID
+        nombre: String!
+        apellidos: String!
+        edad: Int!
+        tipo: TipoCliente!
+        telefono: String
+        movil: String
+        emails: [EmailInput]!
+        empresa: String!
+        cif: String!
+        pedidos: [PedidoInput]
+        comercial: ID
+    }
+
+    input EmailInput {
+        email: String
+    }
+
+    """ Propiedades para los objetos de tipo producto """
+    input ProductoInput {
+        id: ID
+        nombre: String!
+        precio: Float!
+        stock: Int!
+    }
+
+    """ Propiedades para los objetos de tipo pedido """
+    input PedidoInput {
+        id: ID
+        pedido: [PedidoProductoInput]
+        total: Float
+        fecha: String
+        cliente: ID
+        estado: EstadoPedido
+        comercial: ID
+    }
+
+    input PedidoProductoInput {
+        id: ID
+        cantidad: Int
+    }
+
+    """ Query para la operacion CRUD READ """
+    type Query {
+        # Obtener listado de todos los clientes
+        # Devuelve el type de cliente
+        getClientes(limit: Int, offset: Int, comercial: String): [Cliente]
+        # Obtener un cliente por su id 
+        getCliente(id: ID!): Cliente
+        # Obtener el total de clientes
+        totalClientes(comercial: String): String
+        # Obtener listado de productos
+        # Si pasamos el stock como true hace el filtro
+        # No muestra los productos con stock a cero al hacer un pedido
+        getProductos(limit: Int, offset: Int, stock: Boolean): [Producto] 
+        # Obtener un producto por su id
+        getProducto(id: ID!): Producto
+        # Obtener el total de productos
+        totalProductos: String
+        # Obtener pedidos
+        getPedidos(cliente: ID): [Pedido]
+        # Gráficos
+        topClientes: [ClienteTotal]
+        topComerciales: [ComercialTotal]
+        # Usuarios
+        # Obtener listado de todos los usuarios
+        getUsuarios(limit: Int, offset: Int): [Usuario]
+         # Obtener un usuario por su id 
+        obtenerUsuario(id: ID!): Usuario
+        # Obtener usuario por nombre de usuario
+      
+        # Obtener el usuario logueado
+        getUsuario: Usuario
+        # Obtener el total de usuarios
+        totalUsuarios: String
+    }
+
+    """ Mutations para las operaciones CRUD CREATE, UPDATE, DELETE """
+    type Mutation {
+        # Nombre del resolver, input con datos y tipo de dato que devuelve
+        # Insertar cliente 
+        insertarCliente(input: ClienteInput): Cliente
+        # Actualizar cliente
+        actualizarCliente(input: ClienteInput): Cliente
+        # Eliminar cliente, el resolver devuelve un string
+        eliminarCliente(id: ID!): String
+        # Insertar producto
+        insertarProducto(input: ProductoInput): Producto
+        # Actualizar producto
+        actualizarProducto(input: ProductoInput): Producto
+        # Eliminar producto, el resolver devuelve un string
+        eliminarProducto(id: ID!): String
+        # Nuevo pedido
+        nuevoPedido(input: PedidoInput): Pedido
+        # Actualizar el estado del pedido, el resolver devuelve un string
+        actualizarEstadoPedido(input: PedidoInput): String
+        # Insertar usuario
+        insertarUsuario(usuario: String!, nombre: String!, email: String!, password: String!, repetirPassword: String!, rol: String!): Usuario
+        # Autenticar usuario
+        autenticarUsuario(usuario: String!, password: String!): Token
+        # Actualizar usuario
+        actualizarUsuario(id: ID, usuario: String!, nombre: String!, email: String!, password: String!, rol: String!): Usuario
+        # Eliminar producto, el resolver devuelve un string
+        eliminarUsuario(id: ID!): String
+    }

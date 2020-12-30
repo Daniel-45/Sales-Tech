@@ -1,0 +1,33 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "GraphQL Servidor",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js --exec babel-node -e js"
+  },
+  "author": "Daniel Pompa Pareja",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.16.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "fs": "0.0.1-security",
+    "graphql": "^15.3.0",
+    "graphql-import": "^1.0.2",
+    "graphql-tools": "^6.2.3",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.27",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
