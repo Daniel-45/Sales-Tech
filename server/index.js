@@ -71,7 +71,7 @@ app.post("/api/send-mail", (request, response) => {
             secure: true, // true for 465, false for other ports
             auth: {
                 user: "salestech.spain@gmail.com",
-                pass: "password"
+                pass: "Sales_Tech"
             }
         });
 

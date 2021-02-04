@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "houschka";
+  src: url("./assets/fonts/houschka.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
 * {
-  font-family: 'Original Surfer', Arial, Helvetica, sans-serif, cursive;
+  font-family: "houschka", Arial, Helvetica, sans-serif;;
 }
 
 .container-login {
