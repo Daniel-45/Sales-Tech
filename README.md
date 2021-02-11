@@ -54,15 +54,17 @@ Las herramientas y tecnologías utilizadas para el desarrollo de esta aplicació
 
 ## Desarrollo
 
+En el directorio **server** del proyecto, ejecutar el comando: `npm install`
+
 ### Iniciar el servidor
 
-En el directorio del proyecto **(server)** ejecutar: `npm start`
+En el directorio del proyecto **server** ejecutar el comando: `npm start`
 
 Ejecuta los comandos definidos en la sección de scripts del archivo **package.json**, toma la configuración de **babel**,  ejecuta **nodemon** cargando el fichero **index.js** 
 
 ### Iniciar la aplicación React
 
-En el directorio del proyecto **(client)** ejecutar: `npm start`
+En el directorio del proyecto **client** ejecutar el comando: `npm start`
 
 Iniciar el servidor en modo de desarrollo.
 
