@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-    'mongodb+srv://daniel:salestech-password@dam.f2ssz.mongodb.net/proyecto',
+    'mongodb+srv://daniel:fkVzcfLKmAxgdQ94@dam.f2ssz.mongodb.net/proyecto',
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 );
 
